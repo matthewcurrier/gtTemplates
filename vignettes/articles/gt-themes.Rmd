@@ -1,0 +1,50 @@
+---
+title: "gt-themes"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(gt)
+library(gtTemplates)
+library(tidyverse)
+```
+
+```{r}
+mtcars |> 
+  gt() |> 
+  gt_theme_simple()
+```
+
+
+```{r}
+metric_cols <- us_migration |> 
+  select(matches("^m_")) |> 
+  names()
+
+pct_cols <- us_migration |> 
+  select(matches("^pct_")) |> 
+  names()
+
+print(metric_cols)
+print(pct_cols)
+
+us_migration |> 
+  gt() |>
+  gt_theme_simple() |> 
+  fmt_number(
+    columns = any_of(metric_cols),
+    decimals = 0
+  ) |> 
+  fmt_percent(
+    columns = any_of(pct_cols),
+    decimals = 0
+  )
+```
+
+
