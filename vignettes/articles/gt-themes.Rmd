@@ -48,3 +48,10 @@ us_migration |>
 ```
 
 
+```{r}
+us_migration |> 
+  gt() |> 
+  gt_default_formatting() |> 
+  gt_theme_simple()
+```
+
