@@ -32,13 +32,13 @@ gt_default_formatting <- function(gt_object, key_col, metric_cols, pct_cols, ...
       dplyr::select(matches("^m_")) |>
       names()
 
-    if(length(m_cols) == 0) {
-      # just select numeric columns that aren't decimal based
-      m_cols <- gt_object$`_data` |>
-        dplyr::select(where(is.numeric)) |>
-        names()
-
-    }
+    # if(length(m_cols) == 0) {
+    #   # just select numeric columns that aren't decimal based
+    #   m_cols <- gt_object$`_data` |>
+    #     dplyr::select(where(is.numeric)) |>
+    #     names()
+    #
+    # }
     metric_cols <- m_cols
     # print message indicating you just selected cols that start with _m
     message("No metrics cols were supplied. Using these cols: ", paste0(m_cols, collapse = ", "))
@@ -49,11 +49,11 @@ gt_default_formatting <- function(gt_object, key_col, metric_cols, pct_cols, ...
       dplyr::select(matches("^pct_")) |>
       names()
 
-    if(length(p_cols) == 0) {
-      p_cols <- gt_object$`_data` |>
-        dplyr::select(where(is.numeric)) |>
-        names()
-    }
+    # if(length(p_cols) == 0) {
+    #   p_cols <- gt_object$`_data` |>
+    #     dplyr::select(where(is.numeric)) |>
+    #     names()
+    # }
     pct_cols <- p_cols
     # print message indicating you just selected cols that start with _m
     message("No percent cols were supplied. Using these cols: ", paste0(p_cols, collapse = ", "))

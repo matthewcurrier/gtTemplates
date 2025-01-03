@@ -32,7 +32,10 @@ gt_theme_simple <- function(gt_object, ...) {
       data_row.padding = px(6),
 
       table_body.hlines.width = px(0),
-      table.border.top.width = px(0)
+      table.border.top.width = px(0),
+      table_body.border.bottom.width = px(0),
+
+      grand_summary_row.border.color = "black",
 
     ) |>
     tab_style(

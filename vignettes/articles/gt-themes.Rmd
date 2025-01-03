@@ -55,3 +55,31 @@ us_migration |>
   gt_theme_simple()
 ```
 
+
+### Campaign Data with Summary at Bottom
+
+```{r}
+metric_cols <- campaign |> 
+  select(spend, impressions, clicks) |> 
+  names()
+
+pct_cols <- campaign |> 
+  select(ctr) |> 
+  names()
+
+cp_cols <- campaign |> 
+  select(cpc) |> 
+  names()
+
+
+
+campaign |> 
+gt() |> 
+  gt_default_formatting() |>
+  gt_theme_simple() |>
+  grand_summary_rows(fns = list(summary = ~ sum(.)), columns = metric_cols) |> 
+  grand_summary_rows(fns = list(summary = ~ sum(clicks) /  sum(impressions) ), columns = pct_cols) |> 
+  grand_summary_rows(fns = list(summary = ~ sum(spend) /  sum(clicks) ), columns = cp_cols) 
+```
+
+
